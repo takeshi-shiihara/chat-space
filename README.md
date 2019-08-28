@@ -31,36 +31,38 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :group
-- belongs_to :use
+- belongs_to :user
 
-## userテーブル
+## usersテーブル
 
 |Column|Type|Option|
 |------|----|------|
-|user_id|integer|null: false|
 |name|string||null: false|
 |email|string|null: false, unique: false|
 |password|string|null: false|
 
 ### Association
 - has_many :groups through: :groups_users
-- has_many :massages
+- has_many :groups_users
+- has_many :messages
 
 ## groupテーブル
 
 |Column|Type|Option|
 |------|----|------|
-|group_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
 
 ### Association
 - has_many :users , through: :groups_users
-- has_many :massages
+- has_many :groups_users
+- has_many :messages
 
-## massageテーブル
+## messageテーブル
 
 |Column|Type|Option|
 |------|----|------|
 |image|text||
+|text|text||
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
