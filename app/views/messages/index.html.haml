@@ -1,0 +1,47 @@
+!!!
+%html
+  %body
+    .flash-box
+    .wrapper
+      .chat-side
+        .side-header
+          .side-header__box
+            %p.side-header__box__user-name ここにユーザーネーム
+            %ul.side-header__box__menu
+              %li.side-header__box__menu__new-group
+                %a{:href => "/groups/new"}
+                  %i.fa.fa-edit
+              %li.side-header__box__menu__edit-user
+                %a{:href => "/users//edit"}
+                  %i.fa.fa-cog
+        .groups
+          %a{:href => "/groups//messages"}
+            .group
+              %p.group__group-name 所属しているグループ名
+              %p.group__latest-message メッセージ１文
+      .chat-main
+        .main-header
+          .main-header__left-box
+            %h2.main-header__left-box__current-group{"data-group_id" => ""}
+              選択グループ名と同じものを表示
+            %ul.main-header__left-box__member-list
+              Member：
+              %li.main-header__left-box__member-list__member メンバー (所属メンバー分だけ)
+          %a{:href => "/groups/381/edit"}
+            .main-header__edit-btn Edit
+        .messages
+          .message{"data-message_id" => ""}
+            .message__upper-info
+              %p.message__upper-info__talker 投稿者の名前
+              %p.message__upper-info__date 投稿日時 年/月/日/(曜日) 時:分:秒
+            %p.message__text ここに投稿メッセージを表示
+        .form
+          %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/groups/381/messages", :enctype => "multipart/form-data", :method => "post"}
+            %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+            %input{:name => "authenticity_token", :type => "hidden", :value => "OaKBYyywLith1WE7zJr7t6lvfKa5nEDeB+AENALu56goY15WM4M4gNGOxgFEeDc+66G/c0MZ5uxrmk3yIziK0w=="}/
+            .input-box
+              %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
+              %label.input-box__image{:for => "message_image"}
+                %i.fa.fa-image
+                %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
+            %input.submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
