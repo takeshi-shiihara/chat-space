@@ -13,6 +13,9 @@ $(function() {
                     <p class="lower-message__content">
                       ${ message.content }
                     </p>
+                    <div class="lower-message__image">
+                      ${ message.image }
+                    </div>
                   </div>
                 </div>
               </div>`
@@ -34,12 +37,13 @@ $(function() {
       var html = buildHTML(data);
       $('.messages').append(html);
       $("#new_message")[0].reset();
-      $('.form__submit').prop('disabled', false);
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
     })
     .fail(function(){
       alert('error')
+    })
+    .always(function() {
       $('.form__submit').prop('disabled', false);
     })
   })
-});
+})
