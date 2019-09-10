@@ -47,19 +47,15 @@ function appendUser(user) {
     })
 
     .done(function(user) {
-      if (input.length === 0){
-        $('#user-search-result').empty();
-      }
-      else if (user.length !== 0) {
-        $('#user-search-result').empty();
-        user.forEach(function(user){
-          appendUser(user);
-        });
-      }
-      else {
-        $('#user-search-result').empty();
-        appendErrMsgToHTML("一致するユーザーはいません");
-      }
+      $('#user-search-result').empty();{
+        if (user.length !== 0) {
+          user.forEach(function(user){
+            appendUser(user);
+          });
+        }
+        else {
+          appendErrMsgToHTML("一致するユーザーはいません");
+        }}
     })
     .fail(function() {
       alert('ユーザー検索に失敗しました');
@@ -71,7 +67,6 @@ function appendUser(user) {
     var user_name = $(this).data('user-name');
     var user_id =  $(this).data('user-id');
     var html = appendMenbers(user_name, user_id);
-    console.log(user_id)
     $(this).parent().remove();
   });
 
