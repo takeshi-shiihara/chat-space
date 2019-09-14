@@ -1,11 +1,14 @@
 $(function() {
   function buildHTML(message){
-    var image = message.image ? message.image : ""
+    var image = '';
+    if (message.image.url) {
+      image = `<img src="${message.image.url}" class="lower-message__image">`;
+    }
 
     var html = `<div class="message"  data-message-id="${message.id}">
                   <div class="upper-message">
                     <p class="upper-message__user-name">
-                       ${ message.user_name }
+                      ${ message.user_name }
                     </p>
                     <p class="upper-message__date">
                       ${ message.created_at }
@@ -15,7 +18,7 @@ $(function() {
                     <p class="lower-message__content">
                       ${ message.content }
                     </p>
-                    <img src="${message.image}" class="lower-message__image" >
+                    ${image}
                   </div>
                 </div>`
     return html;
@@ -38,7 +41,6 @@ $(function() {
       $('.messages').append(html);
       $("#new_message")[0].reset();
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
-      $('.hidden').remove();
     })
     .fail(function(){
       alert('error')
